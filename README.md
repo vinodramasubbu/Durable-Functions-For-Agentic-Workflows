@@ -31,7 +31,7 @@ This project includes several Azure Functions that work together to analyze insu
 
 - **check_industry_risk_agent**: Analyzes policy data based on industry trends and data to provide detailed risk analysis and recommendations. This analysis is performed by searching the internet and evaluating whether there are any risks in issuing the policy, considering the policy's industry classification in the context of current market trends. Additionally, this process augments the LLM's decision-making capabilities by incorporating data retrieved through a Bing search tool.
 
-![Solution Overview](./solution_overview.png)
+![Solution Overview](solution_overview.png)
 
 ## Prerequisites
 
@@ -130,7 +130,7 @@ INSERT INTO public.wholesale_casualty_insurance_policies (policy_id, company_nam
     2.Send the HTTP request defined in the file to trigger the policy analysis function.
     3.View the results in the HTTP response or debug terminal.
 
-![Test Result](./test_result.png)
+![Test Result](test_result.png)
 
 ## Sample Results
 After executing the policy analysis, you will receive results like the following. Refer to the `output` attribute in the JSON for the analysis results:
@@ -149,7 +149,7 @@ After executing the policy analysis, you will receive results like the following
   "lastUpdatedTime": "2025-01-10T22:44:10Z"
 }
 ```
-![Test Result statusQueryGetUri](./test_result_statusQueryGetUri.png)
+![Test Result statusQueryGetUri](test_result_statusQueryGetUri.png)
 
 ## Conclusion
 Durable Functions provides the foundational framework needed to design and implement agentic workflows and business process automation. Its state management, task orchestration, and fault recovery capabilities allow developers to create complex workflows involving AI agents and external systems without worrying about the intricacies of execution and coordination. Whether for insurance policy analysis, risk assessment, or broader business automation, Durable Functions offers a reliable, scalable, and flexible solution that bridges the gap between AI intelligence and real-world operational requirements. By leveraging its strengths, organizations can achieve smarter, faster, and more resilient automated processes.
