@@ -1,0 +1,7 @@
+POST http://localhost:7071/api/orchestrators/DurableFunctionsOrchestrator1/
+Content-Type: application/json
+    
+{
+    "prompt": "review policy id 2"
+}
+

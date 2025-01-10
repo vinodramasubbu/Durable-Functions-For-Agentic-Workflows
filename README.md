@@ -58,8 +58,6 @@ Create the `wholesale_casualty_insurance_policies` table in a database called `p
 ```sql
 CREATE DATABASE pgdb;
 
-use pgdb;
-
 CREATE TABLE IF NOT EXISTS public.wholesale_casualty_insurance_policies
 (
     policy_id integer NOT NULL DEFAULT nextval('wholesale_casualty_insurance_policies_policy_id_seq'::regclass),
