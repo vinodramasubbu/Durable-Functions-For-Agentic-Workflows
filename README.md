@@ -4,7 +4,7 @@ Durable Functions is an advanced serverless framework in Azure that enables reli
 
 In scenarios such as insurance policy analysis, Durable Functions allow AI agents to perform tasks like natural language processing, rule-based evaluations, and risk assessments by leveraging tools like LLMs, search engines, and dynamic rule engines. Its capability to manage asynchronous workflows, maintain state across tasks, and integrate with other Azure services ensures scalability, fault tolerance, and operational efficiency, making it a perfect fit for modern AI-driven business applications.
 
-## Key Benefits of Durable Functions in This Context:
+## Key Benefits of Durable Functions in thsi context:
 Orchestration of Tasks: The orchestrator function ensures that each step in the workflow (e.g., fetching policy data, analyzing risk, and evaluating industry trends) is executed in the correct sequence. This eliminates manual task coordination and ensures reliable execution.
 
 State Management: Durable Functions automatically manage the state of the workflow, preserving progress even during failures or restarts. This ensures that partially completed workflows can resume seamlessly without losing data.
@@ -31,6 +31,7 @@ This project includes several Azure Functions that work together to analyze insu
 
 - **check_industry_risk_agent**: Analyzes policy data based on industry trends and data to provide detailed risk analysis and recommendations. This analysis is performed by searching the internet and evaluating whether there are any risks in issuing the policy, considering the policy's industry classification in the context of current market trends. Additionally, this process augments the LLM's decision-making capabilities by incorporating data retrieved through a Bing search tool.
 
+![Solution Overview](./solution_overview.png)
 
 ## Prerequisites
 
@@ -107,50 +108,48 @@ INSERT INTO public.wholesale_casualty_insurance_policies (policy_id, company_nam
     ```
 3. **Activate the virtual environment**:
 
-        - **On Windows**:
-            ```bash
-            .venv\Scripts\activate
-            ```
-        
-        - **On macOS/Linux**:
-            ```bash
-            source .venv/bin/activate
-            ```
+    **On Windows**:
+    ```bash
+    .venv\Scripts\activate
+    ```
+    **On macOS/Linux**:
+    ```bash
+    source .venv/bin/activate
+    ```
 4. **Install required packages**:
-
     ```bash
     pip install -r requirements.txt
     ```
-
 5. **Run Azure Functions locally**:
     ```bash
     func start
     ```
-
+    
 ## Execute Policy Analysis
     1.Open the test.http file in your editor.
     2.Send the HTTP request defined in the file to trigger the policy analysis function.
-    3.,View the results in the HTTP response or debug terminal.
+    3.View the results in the HTTP response or debug terminal.
+
+![Test Result](./test_result.png)
 
 ## Sample Results
 After executing the policy analysis, you will receive results like the following. Refer to the `output` attribute in the JSON for the analysis results:
 
-    ```json
-        {
-        "name": "DurableFunctionsOrchestrator1",
-        "instanceId": "14e04babb21b4f24bb948f4440c78108",
-        "runtimeStatus": "Completed",
-        "input": "\"{\\r\\n    \\\"prompt\\\": \\\"review policy id 2\\\"\\r\\n}\"",
-        "customStatus": null,
-        "output": [
-            "{\"policy_id\": 2, \"company_name\": \"Beta Ltd\", \"policy_type\": \"Professional Liability\", \"coverage_amount\": \"500000\", \"premium\": \"8000\", \"deductible\": \"2500\", \"policy_start_date\": \"2023-03-15\", \"policy_end_date\": \"2024-03-14\", \"number_of_employees\": 80, \"industry\": \"Consulting\", \"location\": \"Chicago\", \"number_of_claims\": 0}\n",
-            "{\"policy\": {\"policy_id\": 2, \"company_name\": \"Beta Ltd\", \"policy_type\": \"Professional Liability\", \"coverage_amount\": \"500000\", \"premium\": \"8000\", \"deductible\": \"2500\", \"policy_start_date\": \"2023-03-15\", \"policy_end_date\": \"2024-03-14\", \"number_of_employees\": 80, \"industry\": \"Consulting\", \"location\": \"Chicago\", \"number_of_claims\": 0}, \"decision\": \"approve\", \"reason\": \"Policy has a relatively moderate claims history (0 claims) and is in an industry with a manageable risk profile (Consulting).\"}",
-            "{\"policy\": {\"policy_id\": 2, \"company_name\": \"Beta Ltd\", \"policy_type\": \"Professional Liability\", \"coverage_amount\": \"500000\", \"premium\": \"8000\", \"deductible\": \"2500\", \"policy_start_date\": \"2023-03-15\", \"policy_end_date\": \"2024-03-14\", \"number_of_employees\": 80, \"industry\": \"Consulting\", \"location\": \"Chicago\", \"number_of_claims\": 0}, \"decision\": \"approve\", \"reason\": \"Policy has a relatively moderate claims history (0 claims) and is in an industry with a manageable risk profile (Consulting).\", \"risk\": \"Based on the current industry trends and data for Professional Liability Insurance in the Consulting sector in 2023, here is an analysis to determine if Beta Ltd's policy should be approved:\\n\\n1. **Industry Growth and Trends**:\\n   - The Professional Liability Insurance market is projected to grow from USD 44.96 billion in 2024 to USD 58.91 billion by 2032, exhibiting a CAGR of 3.4%.\\n   - The market has seen rate increases over the past three years; however, there is also increased competition driving down premiums recently.\\n\\n2. **Premium and Coverage Comparison**:\\n   - For consulting businesses, the average annual premium for Professional Liability Insurance ranges from $350 to $1,000.\\n   - However, Beta Ltd's premium is $8,000 annually, which is significantly higher than the average.\\n   - The policy provides a coverage amount of $500,000, which is within the typical range for consulting firms, though there are policies with higher limits available.\\n\\n3. **Deductibles**:\\n   - The average deductible for consulting businesses is about $1,000.\\n   - Beta Ltd\\u2019s deductible is $2,500, which is higher than the average.\\n\\n4. **Claims History**:\\n   - Beta Ltd has had no claims, which is a positive aspect and reduces the risk for the insurer.\\n\\n5. **Employee Count and Location**:\\n   - The company has 80 employees, which is a moderate size for a consulting firm.\\n   - Located in Chicago, a major city, may affect premium rates due to higher legal and operational costs associated with larger urban areas.\\n\\n**Conclusion**:\\n- **Approval Recommendation**: Given the higher-than-average premium and deductible, but considering no claims history and moderate company size, the policy should be approved with a recommendation to negotiate a lower premium or deductible to align more closely with industry averages.\\n\\nEnsuring that the premium and deductible are competitive while maintaining adequate coverage will provide better value and protection for Beta Ltd.\"}"
-        ],
-        "createdTime": "2025-01-10T21:08:51Z",
-        "lastUpdatedTime": "2025-01-10T21:09:06Z"
-        }
-    ```
+```
+{
+  "name": "DurableFunctionsOrchestrator1",
+  "instanceId": "d27842d12f72431ba2ac768316cef9ee",
+  "runtimeStatus": "Completed",
+  "input": "\"{\\r\\n    \\\"prompt\\\": \\\"review policy id 2\\\"\\r\\n}\"",
+  "customStatus": null,
+  "output": [
+    "{\"policy\": {\"policy_id\": 2, \"company_name\": \"Beta Ltd\", \"policy_type\": \"Professional Liability\", \"coverage_amount\": \"500000\", \"premium\": \"8000\", \"deductible\": \"2500\", \"policy_start_date\": \"2023-03-15\", \"policy_end_date\": \"2024-03-14\", \"number_of_employees\": 80, \"industry\": \"Consulting\", \"location\": \"Chicago\", \"number_of_claims\": 0}, \"decision\": \"approve\", \"reason\": \"Policy has a low number of claims (0) and is in an industry with a manageable risk profile (Consulting).\", \"industry_risk_analysis_result\": \"Based on the professional liability insurance industry trends for 2023, there are several key insights to consider:\\n\\n1. **Growth Trends**: The professional liability insurance market is expected to grow steadily, with a projected market size increase from USD 44.96 billion in 2024 to USD 58.91 billion by 2032, showing a compound annual growth rate (CAGR) of 3.4%.\\n\\n2. **Emerging Risks**: The industry is seeing emerging risks related to evolving legislation, cybercrime, social engineering, and data loss. These risks can significantly impact operations and loss severity, especially for consulting firms that handle sensitive data and provide critical professional services.\\n\\n3. **Risk Management and Coverage**: Professional liability insurance provides essential coverage for errors, omissions, or negligence in professional services, which is crucial for consulting firms like Beta Ltd. This coverage helps protect against financial losses resulting from claims made by clients or third parties.\\n\\n4. **Industry-Specific Factors**: Consulting firms, such as Beta Ltd, are considered to be at a higher risk due to the nature of their business, which involves providing expert advice and handling confidential client information.\\n\\nConsidering these factors:\\n\\n- **Positive Aspects**: Beta Ltd has a professional liability policy with a coverage amount of $500,000, a reasonable premium of $8,000, and a deductible of $2,500. They have zero claims, which indicates a good track record.\\n- **Potential Risks**: The consulting industry faces specific risks related to data breaches and professional negligence, which must be mitigated through appropriate coverage and risk management strategies.\\n\\n**Recommendation**:\\nBased on the industry trends and the specific details of Beta Ltd's policy, it is advisable to approve the policy. The policy provides essential coverage that aligns with industry standards and addresses the emerging risks in the consulting sector. Additionally, Beta Ltd's clean claims history supports the decision to approve the policy.\"}"
+  ],
+  "createdTime": "2025-01-10T22:43:57Z",
+  "lastUpdatedTime": "2025-01-10T22:44:10Z"
+}
+```
+![Test Result statusQueryGetUri](./test_result_statusQueryGetUri.png)
 
 ## Conclusion
 Durable Functions provides the foundational framework needed to design and implement agentic workflows and business process automation. Its state management, task orchestration, and fault recovery capabilities allow developers to create complex workflows involving AI agents and external systems without worrying about the intricacies of execution and coordination. Whether for insurance policy analysis, risk assessment, or broader business automation, Durable Functions offers a reliable, scalable, and flexible solution that bridges the gap between AI intelligence and real-world operational requirements. By leveraging its strengths, organizations can achieve smarter, faster, and more resilient automated processes.
