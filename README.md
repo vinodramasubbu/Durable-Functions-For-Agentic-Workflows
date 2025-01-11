@@ -114,11 +114,39 @@ INSERT INTO public.wholesale_casualty_insurance_policies (policy_id, company_nam
     ```bash
     source .venv/bin/activate
     ```
-4. **Install required packages**:
+
+4. **Update `local.settings.json`**:
+    ```bash
+        {
+        "IsEncrypted": false,
+        "Values": {
+            "AzureWebJobsStorage": "DefaultEndpointsProtocol=https;AccountName=your-storage-acct-name;AccountKey=your-storage-acct-key;EndpointSuffix=core.windows.net",
+            "FUNCTIONS_WORKER_RUNTIME": "python",
+            "BING_SUBSCRIPTION_KEY": "your-bing-search-key",
+            "BING_SEARCH_URL": "https://api.bing.microsoft.com/v7.0/search",
+            "AZURE_OPENAI_KEY": "your",
+            "AZURE_OPENAI_ENDPOINT": "https://your-openai-name.openai.azure.com/",
+            "AZURE_OPENAI_DEPLOYMENT": "gpt-4o",
+            "AZURE_OPENAI_VERSION": "2024-02-15-preview",
+            "AZURE_OPENAI_EMBEDDINGS_DEPLOYMENT": "text-embedding-ada-002",
+            "PGHOST":"postgreserver-name.postgres.database.azure.com",
+            "PGUSER": "your-postgresdb-username",
+            "PGPORT": "5432",
+            "PGDATABASE": "pgdb",
+            "PGPASSWORD": "your-postgresdb-password",
+        },
+        "Host": {
+            "LocalHttpPort": 7071,
+            "CORS": "*"
+        }
+        }
+    ```   
+
+5. **Install required packages**:
     ```bash
     pip install -r requirements.txt
     ```
-5. **Run Azure Functions locally**:
+6. **Run Azure Functions locally**:
     ```bash
     func start
     ```
