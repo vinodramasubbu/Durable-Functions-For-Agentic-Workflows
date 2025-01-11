@@ -80,16 +80,16 @@ ALTER TABLE public.wholesale_casualty_insurance_policies
     OWNER to pgadmin;
 
 INSERT INTO public.wholesale_casualty_insurance_policies (policy_id, company_name, policy_type, coverage_amount, premium, deductible, policy_start_date, policy_end_date, number_of_employees, industry, location, number_of_claims) VALUES
-(1, 'Acme Corp', 'General Liability', 1000000.00, 12000.00, 5000.00, '2023-01-01', '2023-12-31', 150, 'Manufacturing', 'New York', 2),
-(2, 'Beta Ltd', 'Professional Liability', 500000.00, 8000.00, 2500.00, '2023-03-15', '2024-03-14', 80, 'Consulting', 'Chicago', 0),
-(3, 'Gamma Inc', 'Product Liability', 2000000.00, 15000.00, 10000.00, '2023-06-01', '2024-05-31', 200, 'Retail', 'Los Angeles', 4),
-(4, 'Delta Co', 'Workers'' Compensation', 750000.00, 10000.00, 1000.00, '2023-02-01', '2024-01-31', 120, 'Construction', 'Houston', 1),
-(5, 'Epsilon LLC', 'General Liability', 1500000.00, 14000.00, 7500.00, '2023-08-01', '2024-07-31', 60, 'Transportation', 'Miami', 3),
-(6, 'Zeta Enterprises', 'Professional Liability', 1000000.00, 11000.00, 5000.00, '2023-05-01', '2024-04-30', 50, 'IT Services', 'San Francisco', 5),
-(7, 'Eta Partners', 'Product Liability', 1200000.00, 13000.00, 6000.00, '2023-09-01', '2024-08-31', 90, 'Food & Beverage', 'Seattle', 2),
-(8, 'Theta Solutions', 'Workers'' Compensation', 500000.00, 7500.00, 2000.00, '2023-07-01', '2024-06-30', 110, 'Healthcare', 'Boston', 6),
-(9, 'Iota Corp', 'General Liability', 1000000.00, 12500.00, 4000.00, '2023-10-01', '2024-09-30', 140, 'Finance', 'Philadelphia', 1),
-(10, 'Kappa Inc', 'Professional Liability', 750000.00, 9000.00, 3000.00, '2023-04-01', '2024-03-31', 70, 'Legal Services', 'Denver', 7);
+(1, 'Acme Corp', 'General Liability', 1000000.00, 12000.00, 5000.00, '2023-01-01', '2025-12-31', 150, 'Manufacturing', 'New York', 2),
+(2, 'Beta Ltd', 'Professional Liability', 500000.00, 8000.00, 2500.00, '2023-03-15', '2025-03-14', 80, 'Consulting', 'Chicago', 0),
+(3, 'Gamma Inc', 'Product Liability', 2000000.00, 15000.00, 10000.00, '2023-06-01', '2025-05-31', 200, 'Retail', 'Los Angeles', 4),
+(4, 'Delta Co', 'Workers'' Compensation', 750000.00, 10000.00, 1000.00, '2023-02-01', '2025-01-31', 120, 'Construction', 'Houston', 1),
+(5, 'Epsilon LLC', 'General Liability', 1500000.00, 14000.00, 7500.00, '2023-08-01', '2025-07-31', 60, 'Transportation', 'Miami', 3),
+(6, 'Zeta Enterprises', 'Professional Liability', 1000000.00, 11000.00, 5000.00, '2023-05-01', '2025-04-30', 50, 'IT Services', 'San Francisco', 5),
+(7, 'Eta Partners', 'Product Liability', 1200000.00, 13000.00, 6000.00, '2023-09-01', '2025-08-31', 90, 'Food & Beverage', 'Seattle', 2),
+(8, 'Theta Solutions', 'Workers'' Compensation', 500000.00, 7500.00, 2000.00, '2023-07-01', '2025-06-30', 110, 'Healthcare', 'Boston', 6),
+(9, 'Iota Corp', 'General Liability', 1000000.00, 12500.00, 4000.00, '2023-10-01', '2025-09-30', 140, 'Finance', 'Philadelphia', 1),
+(10, 'Kappa Inc', 'Professional Liability', 750000.00, 9000.00, 3000.00, '2023-04-01', '2025-03-31', 70, 'Legal Services', 'Denver', 7);
 ```
 
 ## Setup
