@@ -4,7 +4,7 @@ Durable Functions is an advanced serverless framework in Azure that enables reli
 
 In scenarios such as insurance policy analysis, Durable Functions allow AI agents to perform tasks like natural language processing, rule-based evaluations, and risk assessments by leveraging tools like LLMs, search engines, and dynamic rule engines. Its capability to manage asynchronous workflows, maintain state across tasks, and integrate with other Azure services ensures scalability, fault tolerance, and operational efficiency, making it a perfect fit for modern AI-driven business applications.
 
-## Key Benefits of Durable Functions in thsi context:
+## Key Benefits of Durable Functions in this context:
 Orchestration of Tasks: The orchestrator function ensures that each step in the workflow (e.g., fetching policy data, analyzing risk, and evaluating industry trends) is executed in the correct sequence. This eliminates manual task coordination and ensures reliable execution.
 
 State Management: Durable Functions automatically manage the state of the workflow, preserving progress even during failures or restarts. This ensures that partially completed workflows can resume seamlessly without losing data.
