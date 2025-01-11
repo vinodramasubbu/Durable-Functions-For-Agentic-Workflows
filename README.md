@@ -27,9 +27,9 @@ This project includes several Azure Functions that work together to analyze insu
 
 - **fetch_policy_data_agent**: Interprets natural language queries, converts them into code (Python and SQL statements), and queries the database to retrieve policy information. This function uses the Azure OpenAI GPT-4 model to generate the code and execute it via a REPL code interpreter. Alternatively, you can use other code interpreters, such as OpenAI Assistant or Azure Container Apps dynamic sessions, to achieve similar functionality and to achieve this functionality.
 
-- **check_internal_rules_for_risk_agent**: Evaluates the policy data against internal rules to assess associated risks. In this example, the rules are self-contained within the system prompt for simplicity. However, when operationalizing this solution, you may need to dynamically retrieve the rules from your rule engine to enhance flexibility and scalability.
+- **check_internal_rules_for_risk_agent**: Evaluates the policy data against internal rules to assess associated risks. In this example, the LLM uses rules are self-contained within the system prompt for simplicity. However, when operationalizing this solution, you may need to dynamically retrieve the rules from your rule engine to enhance flexibility and scalability.
 
-- **check_industry_risk_agent**: Analyzes policy data based on industry trends and data to provide detailed risk analysis and recommendations. This analysis is performed by searching the internet and evaluating whether there are any risks in issuing the policy, considering the policy's industry classification in the context of current market trends. Additionally, this process augments the LLM's decision-making capabilities by incorporating data retrieved through a Bing search tool.
+- **check_industry_risk_agent**: Analyzes policy data by utilizing industry trends and market insights to deliver detailed risk assessments and actionable recommendations. This process involves conducting internet searches using Bing APIs and feeding the results into the LLM. The LLM then processes and evaluates the data to identify potential risks associated with issuing the policy. The analysis considers the policy's industry classification within the context of current market trends.
 
 ![Solution Overview](solution_overview.png)
 
