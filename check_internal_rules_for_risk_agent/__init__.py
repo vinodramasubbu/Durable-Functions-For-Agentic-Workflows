@@ -36,7 +36,7 @@ llm = AzureChatOpenAI(
 structured_llm_router = llm.with_structured_output(PolicyScreeningDecision)
 
 # Prompt 
-system = """You are an policy rewiew expert, your task is access risk associated with each insurance policy and make a decesion to approve, reject or review. 
+system = """You are an policy rewiew expert, your task is to access risk associated with each insurance policy and make a decesion to approve, reject or review. 
 here are rules to follow:
 if policies have relatively moderate claims (less than 2) histories and/or are in industries with manageable risk profiles, then decesion should be approve , and provide reason for decesion.
 if Policies have very high claims ( greater then 5) that present significant risk without acceptable adjustments,then decesion should be review , and provide reason for decesion.

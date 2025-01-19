@@ -26,7 +26,6 @@ def orchestrator_function(context: df.DurableOrchestrationContext):
     check_industry_risk_agent_results = yield context.call_activity('check_industry_risk_agent', check_internal_rules_for_risk_agent_results)
     print(check_industry_risk_agent_results)
 
-    #return [industry_risk_results]
     return [check_industry_risk_agent_results]
 
 main = df.Orchestrator.create(orchestrator_function)

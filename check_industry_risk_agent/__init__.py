@@ -25,10 +25,6 @@ AZURE_OPENAI_DEPLOYMENT = os.environ["AZURE_OPENAI_DEPLOYMENT"]
 AZURE_OPENAI_VERSION = os.environ["AZURE_OPENAI_VERSION"] 
 AZURE_OPENAI_EMBEDDINGS_DEPLOYMENT = os.environ["AZURE_OPENAI_EMBEDDINGS_DEPLOYMENT"] 
 
-class PolicyScreeningDecision2(BaseModel):
-        decesion: str = Field(description="the decesion of the policy screening, it can be either 'approve', 'reject' or 'review'")
-        reason: str = Field(description="The for the policy screening decesion")
-
 llm = AzureChatOpenAI(
             openai_api_version=os.environ["AZURE_OPENAI_VERSION"],
             openai_api_key=os.environ["AZURE_OPENAI_KEY"],
@@ -45,8 +41,20 @@ def call_web_seach(query: str):
 
 tools = [call_web_seach]
 
-prompt = hub.pull("hwchase17/openai-tools-agent")
-prompt.pretty_print()
+from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
+
+prompt = ChatPromptTemplate.from_messages(
+    [
+        (
+            "system",
+            "You are very powerful assistant, but don't know current events",
+        ),
+        ("user", "{input}"),
+        MessagesPlaceholder(variable_name="agent_scratchpad"),
+    ]
+)
+
+# Create an agent by passing in the language model and tools
 agent = create_tool_calling_agent(llm, tools, prompt)
 # Create an agent executor by passing in the agent and tools
 agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=False)
