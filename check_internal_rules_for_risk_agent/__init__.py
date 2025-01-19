@@ -21,10 +21,23 @@ AZURE_OPENAI_VERSION = os.environ["AZURE_OPENAI_VERSION"]
 AZURE_OPENAI_EMBEDDINGS_DEPLOYMENT = os.environ["AZURE_OPENAI_EMBEDDINGS_DEPLOYMENT"] 
 
 # Data model
-# Data model
-class PolicyScreeningDecision(BaseModel):
-    decesion: str = Field(description="the decesion of the policy screening, it can be either 'approve', 'reject' or 'review'")
-    reason: str = Field(description="The for the policy screening decesion")
+Policy_Screening_Decision_schema = {
+            "title": "Policy_Screening_Decision",
+            "description": "Policy_Screening_Decision.",
+            "type": "object",
+            "properties": {
+                "decesion": {
+                    "type": "string",
+                    "description": "the decesion of the policy screening, it can be either 'approve', 'reject' or 'review'",
+                },
+                "reason": {
+                    "type": "string",
+                    "description": "The for the policy screening decesion"
+                }
+            },
+            "required": ["decesion", "reason"],
+        }
+
 
 llm = AzureChatOpenAI(
         openai_api_version=os.environ["AZURE_OPENAI_VERSION"],
@@ -33,7 +46,7 @@ llm = AzureChatOpenAI(
         azure_endpoint=os.environ["AZURE_OPENAI_ENDPOINT"]
     )
 
-structured_llm_router = llm.with_structured_output(PolicyScreeningDecision)
+policy_screening_llm = llm.with_structured_output(Policy_Screening_Decision_schema)
 
 # Prompt 
 system = """You are an policy rewiew expert, your task is to access risk associated with each insurance policy and make a decesion to approve, reject or review. 
@@ -50,7 +63,7 @@ policy_screening_prompt = ChatPromptTemplate.from_messages(
     ]
 )
 
-policy_screening = policy_screening_prompt | structured_llm_router
+policy_screening = policy_screening_prompt | policy_screening_llm
 #print(policy_screening.invoke({"question": "Who will the Bears draft first in the NFL draft?"}))
 
 def main(name: str) -> str:
@@ -67,13 +80,13 @@ def main(name: str) -> str:
     print("################################################")
     print(json.dumps({
         "policy": policies,
-        "decision": response.decesion,
-        "reason": response.reason
+        "decision": response['decesion'],
+        "reason": response['reason']
     }))
     print("################################################")
 
     return json.dumps({
         "policy": policies,
-        "decision": response.decesion,
-        "reason": response.reason
+        "decision": response['decesion'],
+        "reason": response['reason']
     })
